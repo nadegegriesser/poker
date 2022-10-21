@@ -1,13 +1,12 @@
 package de.griesser.poker;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Set;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -83,13 +82,27 @@ public enum HandType {
     }
 
     private static boolean hasStraight(Hand hand) {
+        int size = hand.getCards().size();
         Set<CardValue> values = hand.getCards().stream().map(card -> card.getValue()).collect(Collectors.toSet());
-        if (values.size() != hand.getCards().size()) {
+        if (values.size() != size) {
             return false;
         }
-        List<CardValue> sortedValues = new ArrayList<>(values);
+        LinkedList<CardValue> sortedValues = new LinkedList<>(values);
         Collections.sort(sortedValues);
-        return (sortedValues.get(sortedValues.size() - 1).ordinal() - sortedValues.get(0).ordinal()) == (values.size()
-                - 1);
+        if (hasStraight(sortedValues)) {
+            return true;
+        }
+        if (sortedValues.getLast() == CardValue.ACE && sortedValues.getFirst() == CardValue.TWO) {
+            sortedValues.removeLast();
+            return hasStraight(sortedValues);
+        }
+        return false;
+    }
+
+    private static boolean hasStraight(LinkedList<CardValue> sortedValues) {
+        if (sortedValues.isEmpty()) {
+            return false;
+        }
+        return ((sortedValues.getLast().ordinal() - sortedValues.getFirst().ordinal()) == (sortedValues.size() - 1));
     }
 }

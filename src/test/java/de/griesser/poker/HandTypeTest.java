@@ -68,8 +68,8 @@ public class HandTypeTest {
                                                 new Hand(Set.of(new Card(DIAMOND, ACE),
                                                                 new Card(DIAMOND, TWO),
                                                                 new Card(HEART, THREE),
-                                                                new Card(HEART, FIVE),
-                                                                new Card(HEART, SIX))),
+                                                                new Card(HEART, FOUR),
+                                                                new Card(HEART, FIVE))),
                                                 STRAIGHT),
                                 Arguments.of(
                                                 new Hand(Set.of(new Card(DIAMOND, TEN),
