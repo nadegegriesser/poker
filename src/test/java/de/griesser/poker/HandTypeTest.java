@@ -30,6 +30,13 @@ public class HandTypeTest {
                                                                 new Card(DIAMOND, NINE))),
                                                 HIGH_CARD),
                                 Arguments.of(
+                                                new Hand(Set.of(new Card(SPADE, KING),
+                                                                new Card(SPADE, ACE),
+                                                                new Card(SPADE, TWO),
+                                                                new Card(DIAMOND, THREE),
+                                                                new Card(DIAMOND, FOUR))),
+                                                HIGH_CARD),
+                                Arguments.of(
                                                 new Hand(Set.of(new Card(CLUB, JACK),
                                                                 new Card(DIAMOND, JACK),
                                                                 new Card(CLUB, TWO),
@@ -56,6 +63,20 @@ public class HandTypeTest {
                                                                 new Card(HEART, FIVE),
                                                                 new Card(HEART, SIX),
                                                                 new Card(HEART, SEVEN))),
+                                                STRAIGHT),
+                                Arguments.of(
+                                                new Hand(Set.of(new Card(DIAMOND, ACE),
+                                                                new Card(DIAMOND, TWO),
+                                                                new Card(HEART, THREE),
+                                                                new Card(HEART, FIVE),
+                                                                new Card(HEART, SIX))),
+                                                STRAIGHT),
+                                Arguments.of(
+                                                new Hand(Set.of(new Card(DIAMOND, TEN),
+                                                                new Card(DIAMOND, JACK),
+                                                                new Card(HEART, QUEEN),
+                                                                new Card(HEART, KING),
+                                                                new Card(HEART, ACE))),
                                                 STRAIGHT),
                                 Arguments.of(
                                                 new Hand(Set.of(new Card(CLUB, TWO),

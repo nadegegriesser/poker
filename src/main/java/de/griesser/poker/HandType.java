@@ -78,11 +78,8 @@ public enum HandType {
     }
 
     private static boolean hasFlush(Hand hand) {
-        Map<CardSuit, Set<CardValue>> valuesBySuit = new HashMap<>();
-        for (Card card : hand.getCards()) {
-            valuesBySuit.computeIfAbsent(card.getSuit(), k -> new HashSet<>()).add(card.getValue());
-        }
-        return valuesBySuit.size() == 1;
+        Set<CardSuit> suits = hand.getCards().stream().map(card -> card.getSuit()).collect(Collectors.toSet());
+        return suits.size() == 1;
     }
 
     private static boolean hasStraight(Hand hand) {
