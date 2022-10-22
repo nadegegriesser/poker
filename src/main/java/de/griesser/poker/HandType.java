@@ -2,7 +2,6 @@ package de.griesser.poker;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Map;
 import java.util.Set;
 import java.util.HashMap;
@@ -12,26 +11,20 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public enum HandType {
-    STRAIGHT_FLUSH((Hand hand) -> hasStraight(hand) && hasFlush(hand), (Hand hand1, Hand hand2) -> 0),
-    FOUR_OF_A_KIND((Hand hand) -> has4OfAKind(hand), (Hand hand1, Hand hand2) -> 0),
-    FULL_HOUSE((Hand hand) -> hasFullHouse(hand), (Hand hand1, Hand hand2) -> 0),
-    FLUSH((Hand hand) -> hasFlush(hand), (Hand hand1, Hand hand2) -> 0),
-    STRAIGHT((Hand hand) -> hasStraight(hand), (Hand hand1, Hand hand2) -> 0),
-    THREE_OF_A_KIND((Hand hand) -> has3OfAKind(hand), (Hand hand1, Hand hand2) -> 0),
-    TWO_PAIRS((Hand hand) -> hasTwoPairs(hand), (Hand hand1, Hand hand2) -> 0),
-    PAIR((Hand hand) -> hasPair(hand), (Hand hand1, Hand hand2) -> 0),
-    HIGH_CARD((Hand hand) -> true, (Hand hand1, Hand hand2) -> 0);
+    STRAIGHT_FLUSH((Hand hand) -> hasStraight(hand) && hasFlush(hand)),
+    FOUR_OF_A_KIND((Hand hand) -> has4OfAKind(hand)),
+    FULL_HOUSE((Hand hand) -> hasFullHouse(hand)),
+    FLUSH((Hand hand) -> hasFlush(hand)),
+    STRAIGHT((Hand hand) -> hasStraight(hand)),
+    THREE_OF_A_KIND((Hand hand) -> has3OfAKind(hand)),
+    TWO_PAIRS((Hand hand) -> hasTwoPairs(hand)),
+    PAIR((Hand hand) -> hasPair(hand)),
+    HIGH_CARD((Hand hand) -> true);
 
     private final Predicate<Hand> predicate;
-    private final Comparator<Hand> comparator;
 
-    HandType(Predicate<Hand> predicate, Comparator<Hand> comparator) {
+    HandType(Predicate<Hand> predicate) {
         this.predicate = predicate;
-        this.comparator = comparator;
-    }
-
-    public int compare(Hand hand1, Hand hand2) {
-        return comparator.compare(hand1, hand2);
     }
 
     public static HandType getHandType(Hand hand) {
@@ -104,5 +97,34 @@ public enum HandType {
             return false;
         }
         return ((sortedValues.getLast().ordinal() - sortedValues.getFirst().ordinal()) == (sortedValues.size() - 1));
+    }
+
+    public static int compareHandsOfSameType(Hand hand1, Hand hand2) {
+        List<CardValue> sortedCardValues1 = getSortedCardValues(hand1);
+        List<CardValue> sortedCardValues2 = getSortedCardValues(hand2);
+        return compareSortedCardValues(sortedCardValues1, sortedCardValues2);
+    }
+
+    public static List<CardValue> getSortedCardValues(Hand hand) {
+        Map<CardValue, Integer> countByValue = getCountByValue(hand);
+        return hand.getCards().stream().map(card -> card.getValue())
+                .sorted((cardValue1, cardValue2) -> {
+                    int res = countByValue.get(cardValue1).compareTo(countByValue.get(cardValue2));
+                    if (res != 0) {
+                        return res;
+                    }
+                    return cardValue1.compareTo(cardValue2);
+                })
+                .collect(Collectors.toList());
+    }
+
+    private static int compareSortedCardValues(List<CardValue> sortedCardValues1, List<CardValue> sortedCardValues2) {
+        for (int i = sortedCardValues1.size() - 1; i >= 0; i--) {
+            int res = sortedCardValues1.get(i).compareTo(sortedCardValues2.get(i));
+            if (res != 0) {
+                return res;
+            }
+        }
+        return 0;
     }
 }
