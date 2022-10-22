@@ -188,18 +188,6 @@ public class HandComparatorTest {
                                                                 new Card(CLUB, FOUR),
                                                                 new Card(DIAMOND, FOUR),
                                                                 new Card(HEART, EIGHT)))),
-                                // three of a kind vs three of a kind
-                                Arguments.of(
-                                                new Hand(Set.of(new Card(DIAMOND, TWO),
-                                                                new Card(HEART, TWO),
-                                                                new Card(SPADE, TWO),
-                                                                new Card(CLUB, FIVE),
-                                                                new Card(CLUB, SIX))),
-                                                new Hand(Set.of(new Card(DIAMOND, TWO),
-                                                                new Card(HEART, TWO),
-                                                                new Card(SPADE, TWO),
-                                                                new Card(CLUB, FIVE),
-                                                                new Card(CLUB, SIX)))),
                                 // straight vs three of a kind
                                 Arguments.of(
                                                 new Hand(Set.of(new Card(CLUB, TWO),
@@ -224,6 +212,20 @@ public class HandComparatorTest {
                                                                 new Card(SPADE, FOUR),
                                                                 new Card(SPADE, FIVE),
                                                                 new Card(SPADE, SIX)))),
+
+                                // TODO
+                                // straight vs straight
+                                Arguments.of(
+                                                new Hand(Set.of(new Card(CLUB, TWO),
+                                                                new Card(CLUB, THREE),
+                                                                new Card(SPADE, FOUR),
+                                                                new Card(SPADE, FIVE),
+                                                                new Card(SPADE, SIX))),
+                                                new Hand(Set.of(new Card(DIAMOND, ACE),
+                                                                new Card(DIAMOND, TWO),
+                                                                new Card(HEART, THREE),
+                                                                new Card(HEART, FOUR),
+                                                                new Card(HEART, FIVE)))),
                                 // flush vs straight
                                 Arguments.of(
                                                 new Hand(Set.of(new Card(CLUB, TWO),

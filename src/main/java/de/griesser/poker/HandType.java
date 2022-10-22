@@ -11,15 +11,15 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public enum HandType {
-    STRAIGHT_FLUSH((Hand hand) -> hasStraight(hand) && hasFlush(hand)),
-    FOUR_OF_A_KIND((Hand hand) -> has4OfAKind(hand)),
-    FULL_HOUSE((Hand hand) -> hasFullHouse(hand)),
-    FLUSH((Hand hand) -> hasFlush(hand)),
-    STRAIGHT((Hand hand) -> hasStraight(hand)),
-    THREE_OF_A_KIND((Hand hand) -> has3OfAKind(hand)),
-    TWO_PAIRS((Hand hand) -> hasTwoPairs(hand)),
+    HIGH_CARD((Hand hand) -> true),
     PAIR((Hand hand) -> hasPair(hand)),
-    HIGH_CARD((Hand hand) -> true);
+    TWO_PAIRS((Hand hand) -> hasTwoPairs(hand)),
+    THREE_OF_A_KIND((Hand hand) -> has3OfAKind(hand)),
+    STRAIGHT((Hand hand) -> hasStraight(hand)),
+    FLUSH((Hand hand) -> hasFlush(hand)),
+    FULL_HOUSE((Hand hand) -> hasFullHouse(hand)),
+    FOUR_OF_A_KIND((Hand hand) -> has4OfAKind(hand)),
+    STRAIGHT_FLUSH((Hand hand) -> hasStraight(hand) && hasFlush(hand));
 
     private final Predicate<Hand> predicate;
 
@@ -28,7 +28,9 @@ public enum HandType {
     }
 
     public static HandType getHandType(Hand hand) {
-        return Arrays.stream(values()).filter(type -> type.predicate.test(hand)).findFirst().get();
+        return Arrays.stream(values()).sorted(Collections.reverseOrder())
+                .filter(type -> type.predicate.test(hand))
+                .findFirst().get();
     }
 
     private static boolean hasPair(Hand hand) {
