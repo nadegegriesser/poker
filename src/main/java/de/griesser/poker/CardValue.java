@@ -1,30 +1,27 @@
 package de.griesser.poker;
 
+/**
+ * Card values for external use
+ */
 public enum CardValue {
-    TWO("2", ResolvedCardValue.TWO), 
-    THREE("3", ResolvedCardValue.THREE), 
-    FOUR("4", ResolvedCardValue.FOUR), 
-    FIVE("5", ResolvedCardValue.FIVE), 
-    SIX("6", ResolvedCardValue.SIX), 
-    SEVEN("7", ResolvedCardValue.SEVEN), 
-    EIGHT("8", ResolvedCardValue.EIGHT), 
-    NINE("9", ResolvedCardValue.NINE), 
-    TEN("10", ResolvedCardValue.TEN), 
-    JACK("J", ResolvedCardValue.JACK), 
-    QUEEN("Q", ResolvedCardValue.QUEEN), 
-    KING("K", ResolvedCardValue.KING), 
-    ACE("A", ResolvedCardValue.ACE);
+    TWO("2"), 
+    THREE("3"), 
+    FOUR("4"), 
+    FIVE("5"), 
+    SIX("6"), 
+    SEVEN("7"), 
+    EIGHT("8"), 
+    NINE("9"), 
+    TEN("10"), 
+    JACK("J"), 
+    QUEEN("Q"), 
+    KING("K"), 
+    ACE("A");
 
     private final String label;
-    private final ResolvedCardValue resolvedValue;
 
-    CardValue(String label, ResolvedCardValue resolvedValue) {
+    CardValue(String label) {
         this.label = label;
-        this.resolvedValue = resolvedValue;
-    }
-
-    public ResolvedCardValue getResolvedValue() {
-        return resolvedValue;
     }
 
     public String toString() {
