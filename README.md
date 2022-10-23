@@ -9,9 +9,7 @@ The hand class pre computes key facts needed to compare hands:
 - the hand type 
 - in case handy types a equal a sorted list of card values.
 
-Card values are converted to internal card values, to assign real values to aces.
-
-The hand comparator can be used to compare 2 hands or even to sort a whole list of them. 
+The hand comparator can be used to compare 2 hands or more. 
 
 ## Running unit tests
 

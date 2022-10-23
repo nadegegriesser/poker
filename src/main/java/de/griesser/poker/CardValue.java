@@ -1,8 +1,5 @@
 package de.griesser.poker;
 
-/**
- * Card values for external use
- */
 public enum CardValue {
     TWO("2"), 
     THREE("3"), 

@@ -6,9 +6,9 @@ import java.util.Set;
 
 public class CardValueCounter {
 
-    public static Map<ResolvedCardValue, Integer> getCountByValue(Set<Card<ResolvedCardValue>> cards) {
-        Map<ResolvedCardValue, Integer> countByValue = new HashMap<>();
-        for (Card<ResolvedCardValue> card : cards) {
+    public static Map<CardValue, Integer> getCountByValue(Set<Card> cards) {
+        Map<CardValue, Integer> countByValue = new HashMap<>();
+        for (Card card : cards) {
             countByValue.merge(card.getValue(), 1, Integer::sum);
         }
         return countByValue;

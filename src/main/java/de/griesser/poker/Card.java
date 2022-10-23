@@ -7,10 +7,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Getter
 @EqualsAndHashCode
-public class Card<V> {
+public class Card {
     
     private final CardSuit suit;
-    private final V value;
+    private final CardValue value;
 
     @Override
     public String toString() {
