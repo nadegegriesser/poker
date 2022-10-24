@@ -7,11 +7,6 @@ import java.util.stream.Collectors;
 
 import lombok.Getter;
 
-/**
- * Compute and stores relevant information for the comparator
- * - hand type
- * - sorted card values (used for comparing when hand types are equal)
- */
 @Getter
 public class Hand {
 
@@ -24,7 +19,7 @@ public class Hand {
     }
 
     private static List<CardValue> getSortedCardValues(Set<Card> cards) {
-        Comparator<CardValue> comparator = new CardValueComparator(cards);
+        Comparator<CardValue> comparator = new CardValueInHandComparator(cards);
         return cards.stream().map(card -> card.getValue())
                 .sorted(comparator)
                 .collect(Collectors.toList());

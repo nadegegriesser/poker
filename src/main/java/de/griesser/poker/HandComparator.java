@@ -14,6 +14,9 @@ public class HandComparator implements Comparator<Hand> {
         return compareSortedCardValues(hand1.getSortedCardValues(), hand2.getSortedCardValues());
     }
 
+    /**
+     * Compare the card values of the two hands starting by the most important one
+     */
     private static int compareSortedCardValues(List<CardValue> sortedCardValues1, List<CardValue> sortedCardValues2) {
         for (int i = sortedCardValues1.size() - 1; i >= 0; i--) {
             int res = sortedCardValues1.get(i).compareTo(sortedCardValues2.get(i));

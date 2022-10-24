@@ -70,7 +70,7 @@ public class HandTypeTest {
                                                                 new Card(HEART, THREE),
                                                                 new Card(HEART, FOUR),
                                                                 new Card(HEART, FIVE)),
-                                                STRAIGHT_ACE_LOW),
+                                                WHEEL),
                                 Arguments.of(
                                                 Set.of(new Card(DIAMOND, TEN),
                                                                 new Card(DIAMOND, JACK),
@@ -105,7 +105,7 @@ public class HandTypeTest {
                                                                 new Card(CLUB, ACE),
                                                                 new Card(CLUB, FOUR),
                                                                 new Card(CLUB, FIVE)),
-                                                STRAIGHT_FLUSH_ACE_LOW),
+                                                STEEL_WHEEL),
                                 Arguments.of(
                                                 Set.of(new Card(CLUB, THREE),
                                                                 new Card(CLUB, FOUR),

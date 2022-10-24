@@ -12,26 +12,26 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class CardValueComparatorTest {
+public class CardValueInHandComparatorTest {
 
         @ParameterizedTest(name = "{index}: {0} {2} vs {1}")
         @MethodSource("provideFirstCardValueWins")
         public void compare_ShouldReturnNegativeValue(Set<Card> cards, CardValue value1, CardValue value2) {
-                assertTrue(new CardValueComparator(cards).compare(value2, value1) < 0,
+                assertTrue(new CardValueInHandComparator(cards).compare(value2, value1) < 0,
                                 String.format("%s should loose agains %s", value1, value2));
         }
 
         @ParameterizedTest(name = "{index}: {0} {1} vs {2}")
         @MethodSource("provideEqualCardValues")
         public void compare_ShouldReturn0(Set<Card> cards, CardValue value1, CardValue value2) {
-                assertTrue(new CardValueComparator(cards).compare(value1, value2) == 0,
+                assertTrue(new CardValueInHandComparator(cards).compare(value1, value2) == 0,
                                 String.format("%s against %s should be a draw", value1, value2));
         }
 
         @ParameterizedTest(name = "{index}: {0} {1} vs {2}")
         @MethodSource("provideFirstCardValueWins")
         public void compare_ShouldReturnPositiveValue(Set<Card> cards, CardValue value1, CardValue value2) {
-                assertTrue(new CardValueComparator(cards).compare(value1, value2) > 0,
+                assertTrue(new CardValueInHandComparator(cards).compare(value1, value2) > 0,
                                 String.format("%s should win agains %s", value1, value2));
         }
 

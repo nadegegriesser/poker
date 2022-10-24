@@ -6,6 +6,9 @@ import java.util.Set;
 
 public class CardValueCounter {
 
+    /**
+     * Count how many times a card value is in a hand
+     */
     public static Map<CardValue, Integer> getCountByValue(Set<Card> cards) {
         Map<CardValue, Integer> countByValue = new HashMap<>();
         for (Card card : cards) {

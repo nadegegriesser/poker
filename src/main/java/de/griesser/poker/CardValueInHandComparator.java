@@ -11,12 +11,17 @@ import java.util.Set;
  * The resulting order is wrong for straight (flush) ace low,
  * but as 2 hands of this type have exactly the same values,
  * they will be considered equal
+ * [2D, 2H, 3D, 5S, 8H] -> [3, 5, 8, 2, 2] as there is a pair of 2s
+ * [2D, 2H, 3D, 3S, 8H] -> [8, 2, 2, 3, 3] as there is a pair of 3s and a pair of 2s and 3 > 2
+ * [2D, 2H, 2S, 3S, 8H] -> [3, 8, 2, 2, 2] as there are three 2s 
+ * [2D, 2H, 2S, 3S, 3H] -> [3, 3, 2, 2, 2] as there are three 2s and a pair of 3s
+ * [2D, 2H, 2S, 2C, 8H] -> [8, 2, 2, 2, 2] as there are four 2s 
  */
-public class CardValueComparator implements Comparator<CardValue> {
+public class CardValueInHandComparator implements Comparator<CardValue> {
 
     private Map<CardValue, Integer> countByValue;
 
-    public CardValueComparator(Set<Card> cards) {
+    public CardValueInHandComparator(Set<Card> cards) {
         countByValue = CardValueCounter.getCountByValue(cards);
     }
 

@@ -15,12 +15,12 @@ public enum HandType {
     PAIR((Set<Card> cards) -> hasPair(cards)),
     TWO_PAIRS((Set<Card> cards) -> hasTwoPairs(cards)),
     THREE_OF_A_KIND((Set<Card> cards) -> has3OfAKind(cards)),
-    STRAIGHT_ACE_LOW((Set<Card> cards) -> hasStraightAceLow(cards)),
+    WHEEL((Set<Card> cards) -> hasStraightAceLow(cards)), // ace as one
     STRAIGHT((Set<Card> cards) -> hasStraight(cards)),
     FLUSH((Set<Card> cards) -> hasFlush(cards)),
     FULL_HOUSE((Set<Card> cards) -> hasFullHouse(cards)),
     FOUR_OF_A_KIND((Set<Card> cards) -> has4OfAKind(cards)),
-    STRAIGHT_FLUSH_ACE_LOW((Set<Card> cards) -> hasStraightAceLow(cards) && hasFlush(cards)),
+    STEEL_WHEEL((Set<Card> cards) -> hasStraightAceLow(cards) && hasFlush(cards)), // ace as one
     STRAIGHT_FLUSH((Set<Card> cards) -> hasStraight(cards) && hasFlush(cards));
 
     private final Predicate<Set<Card>> predicate;
