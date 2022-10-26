@@ -3,6 +3,7 @@ package de.griesser.poker;
 import static de.griesser.poker.CardValue.*;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Deque;
 import java.util.Map;
 import java.util.Set;
 import java.util.LinkedList;
@@ -71,7 +72,7 @@ public enum HandType {
     }
 
     private static boolean hasStraight(Set<Card> cards) {
-        LinkedList<CardValue> sortedValues = getSortedUniqueValues(cards);
+        Deque<CardValue> sortedValues = getSortedUniqueValues(cards);
         if (sortedValues.size() != cards.size()) {
             return false;
         }
@@ -79,7 +80,7 @@ public enum HandType {
     }
 
     private static boolean hasStraightAceLow(Set<Card> cards) {
-        LinkedList<CardValue> sortedValues = getSortedUniqueValues(cards);
+        Deque<CardValue> sortedValues = getSortedUniqueValues(cards);
         if (sortedValues.size() != cards.size()) {
             return false;
         }
@@ -89,14 +90,14 @@ public enum HandType {
         return hasStraight(sortedValues);
     }
 
-    private static LinkedList<CardValue> getSortedUniqueValues(Set<Card> cards) {
+    private static Deque<CardValue> getSortedUniqueValues(Set<Card> cards) {
         Set<CardValue> values = cards.stream().map(card -> card.getValue()).collect(Collectors.toSet());
         LinkedList<CardValue> sortedValues = new LinkedList<>(values);
         Collections.sort(sortedValues);
         return sortedValues;
     }
 
-    private static boolean hasStraight(LinkedList<CardValue> sortedValues) {
+    private static boolean hasStraight(Deque<CardValue> sortedValues) {
         return (sortedValues.getLast().ordinal() - sortedValues.getFirst().ordinal()) == (sortedValues.size() - 1);
     }
 

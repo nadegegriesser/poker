@@ -46,12 +46,12 @@ public class HandComparatorTest {
                                                                 new Card(SPADE, FIVE),
                                                                 new Card(CLUB, THREE),
                                                                 new Card(SPADE, FOUR),
-                                                                new Card(SPADE, SIX)),
+                                                                new Card(SPADE, SEVEN)),
                                                 Set.of(new Card(HEART, TWO),
                                                                 new Card(DIAMOND, FIVE),
                                                                 new Card(HEART, THREE),
                                                                 new Card(DIAMOND, FOUR),
-                                                                new Card(DIAMOND, SIX))),
+                                                                new Card(DIAMOND, SEVEN))),
                                 // pair vs pair
                                 Arguments.of(
                                                 Set.of(new Card(CLUB, TWO),
